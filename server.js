@@ -23,10 +23,20 @@ function mungeWeather(weatherData) {
     })
 }
 
-app.get('/location', (req, res) => {
+function mungeLocation(data) {
+    return data.map(item => {
+        const object = {};
+        object.formatted_query = item.display_name;
+        object.latitude = item.lat;
+        object.longitude = item.lon;
+        return object;
+    })
+}
 
+app.get('/location/', (req, res) => {
+
+    const mungedResponse = mungeLocation(geoData);
     try {
-         const mungedResponse = mungeWeather(weatherData);
         res.json(mungedResponse);        
     }  catch(e) {
         console.error(e);
@@ -39,18 +49,19 @@ app.get('/location', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
-    res.json([
-        {
-            forecast: 'Partly cloudy until afternoon.',
-            time: 'Mon Jan 01 2001',
-        },
-        {
-            forecast: 'Mostly cloudy in the morning.',
-            time: 'Tue Jan 02 2001',
-        },
-    ]);
 
+    const mungedResponse = mungeWeather(weatherData);
 
+    try {
+        res.json(mungedResponse);        
+    }  catch(e) {
+        console.error(e);
+
+        res.json({
+           stats: 500,
+           responseText: e 
+        });
+    }
 });
 
 app.get('*', (req, res) => {
