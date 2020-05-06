@@ -17,7 +17,7 @@ app.use(cors());
 function mungeWeather(weatherData) {
 
     const newArr = [];
-    for(let i = 0; i < 9; i++) {
+    for(let i = 0; i < 8; i++) {
         const item = weatherData.data[i];
     // return weatherData.data.map(item => {
         const object = {};
