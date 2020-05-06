@@ -29,7 +29,7 @@ function mungeWeather(weatherData) {
 app.get('/location', (req, res) => {
 
     try {
-        const mungedResponse = mungeWeather(weatherData);
+        // const mungedResponse = mungeWeather(weatherData);
         res.json({test:'hi'});        
     }  catch(e) {
         console.error(e);
