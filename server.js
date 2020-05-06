@@ -15,12 +15,16 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 
 function mungeWeather(weatherData) {
-    return weatherData.data.map(item => {
+
+    for(let i = 0; i < 9; i++) {
+    const item = weatherData.data[i];
+    // return weatherData.data.map(item => {
         const object = {};
         object.forecast = item.weather.description;
         object.time = item.datetime;
         return object;
-    })
+    // })
+    }
 }
 
 function mungeLocation(data) {
