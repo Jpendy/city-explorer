@@ -41,7 +41,7 @@ app.get('/location', (req, res) => {
     }
 })
 
-app.get('weather', (req, res) => {
+app.get('/weather', (req, res) => {
     res.json([
         {
             forecast: 'Partly cloudy until afternoon.',
