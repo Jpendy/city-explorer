@@ -15,22 +15,19 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 
 function mungeWeather(weatherData) {
-    return weatherData.map(item => {
+    return weatherData.data.map(item => {
         const object = {};
-        object.forecast = item.description;
+        object.forecast = item.weather.description;
         object.time = item.datetime;
         return object;
     })
-
-
-
 }
 
 app.get('/location', (req, res) => {
 
     try {
-        // const mungedResponse = mungeWeather(weatherData);
-        res.json({test:'hi'});        
+         const mungedResponse = mungeWeather(weatherData);
+        res.json(mungedResponse);        
     }  catch(e) {
         console.error(e);
 
