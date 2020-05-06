@@ -30,7 +30,7 @@ app.get('/location', (req, res) => {
 
     try {
         const mungedResponse = mungeWeather(weatherData);
-        res.json(mungedResponse);        
+        res.json('hi');        
     }  catch(e) {
         console.error(e);
 
